@@ -39,4 +39,4 @@ VALUES
 (15, 'Panache', '$10.000'),
 (15, 'El dorado', '$10.000'),
 (15, 'Caperucita roja', '$10.000'),
-(15, 'En los años 1600', '$10.000');
+(15, 'En los años 1600', '$10.000'); 
