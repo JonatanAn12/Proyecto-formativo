@@ -308,12 +308,14 @@ DROP TABLE IF EXISTS `menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `producto` varchar(255) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `descripcion` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `categoria_id` INT NOT NULL,
+    `producto` VARCHAR(255) NOT NULL,
+    `precio` VARCHAR (255) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`categoria_id`) REFERENCES `categoria`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,48 +325,109 @@ CREATE TABLE `menu` (
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` VALUES
-(1,'Sopa de Sancocho',7000,'Entrada'),
-(2,'Longaniza',8000,'Entrada'),
-(3,'pincho de Cerdo',15000,'Entrada'),
-(4,'Pincho de Res',15000,'Entrada'),
-(5,'Pincho Mixto',17000,'Entrada'),
-(6,'Sancocho de Gallina',7000,'Criollos'),
-(7,'Sancocho de Cola',7000,'Criollos'),
-(8,'Sancocho de Pollo',7000,'Criollos'),
-(9,'Lengua en Salsa',7000,'Criollos'),
-(10,'Pechuga',28000,'Parrilla'),
-(11,'Churrasco',34000,'Parrilla'),
-(12,'Punta de Anca',34000,'Parrilla'),
-(13,'Costillas BBQ',30000,'Parrilla');
-(14,'Cerdo (personal) ',27000,'Llanera');
-(15,'Res (personal) ',27000,'Llanera');
-(16,'Costilla de Cerdo (personal) ',27000,'Llanera');
-(17,'Mixto dos Carnes (personal) ',30000,'Llanera');
-(18,'Trifásica tres Carnes (personal) ',35000,'Llanera');
-(19,'Picada Mixta (2 personas) ',55000,'Llanera');
-(20,'Picada + Longaniza (2 personas) ',60000,'Llanera');
-(21,'Picada + Longaniza (3 personas) ',80000,'Llanera');
-(22,'Picada Mixta (4 personas) ',100000,'Llanera');
-(23,'Picada + Longaniza (4 personas) ',110000,'Llanera');
-(24,'Mojarra ',32000,'Llanera');
-(25,'Costilla de Cerdo',30000,'Asados al Barril');
-(26,'Panceta',30000,'Asados al Barril');
-(27,'Pierna Pernil',25000,'Asados al Barril');
-(28,'Cerdo (personal) ',27000,'Asados bajo Tierra');
-(29,'Res (personal) ',27000,'Asados bajo Tierra');
-(30,'Costilla de Cerdo (personal) ',27000,'Asados bajo Tierra');
-(31,'Mixto dos Carnes (personal) ',30000,'Asados bajo Tierra');
-(32,'Trifásica tres Carnes (personal) ',35000,'Asados bajo Tierra');
-(33,'Picada Mixta (2 personas) ',55000,'Asados bajo Tierra');
-(34,'Porcion de Papa',4000,'Adicionales');
-(35,'Porcion de Yuca',4000,'Adicionales');
-(36,'Porcion de Platano',4000,'Adicionales');
-(37,'Porcion de Arroz) ',4000,'Adicionales');
+(1,1'Sopa de Sancocho',7000,),
+(2,1'Longaniza',8000,),
+(3,1'pincho de Cerdo', 15000,),
+(4,1'Pincho de Res', 15000,),
+(5,1'Pincho Mixto', 17000,),
+(6,2'Sancocho de Gallina',7000,),
+(7,2'Sancocho de Cola',7000,),
+(8,2'Sancocho de Pollo',7000,),
+(9,2'Lengua en Salsa',7000,),
+(10,3,'Pechuga', 28000,),
+(11,3,'Churrasco', 34000,),
+(12,3,'Punta de Anca', 34000,),
+(13,3,'Costillas BBQ', 30000,);
+(14,4,'Cerdo (personal) ', 27000,);
+(15,4,'Res (personal) ', 27000,);
+(16,4,'Costilla de Cerdo (personal) ', 27000,);
+(17,4,'Mixto dos Carnes (personal) ', 30000,);
+(18,4,'Trifásica tres Carnes (personal) ', 35000,);
+(19,4,'Picada Mixta (2 personas) ', 55000,);
+(20,4,'Picada + Longaniza (2 personas) ', 60000,);
+(21,4,'Picada + Longaniza (3 personas) ',80000,);
+(22,4,'Picada Mixta (4 personas) ', 100000,);
+(23,4,'Picada + Longaniza (4 personas) ', 110000,);
+(24,4,'Mojarra ', 32000, );
+(25,5,'Costilla de Cerdo', 30000,);
+(26,5,'Panceta', 30000,);
+(27,5,'Pierna Pernil', 25000,);
+(28,6,'Cerdo (personal)', 27000,);
+(29,6,'Res (personal)', 27000, );
+(30,6,'Costilla de Cerdo (personal)', 72000,);
+(31,6,'Mixto dos Carnes (personal)', 30000,);
+(32,6,'Trifásica tres Carnes (personal)', 35000,);
+(33,6,'Picada Mixta (2 personas)', 55000,);
+(34,7,'Porcion de Papa', 4000,);
+(35,7,'Porcion de Yuca', 4000,);
+(36,7,'Porcion de Platano', 4000,);
+(37,7,'Porcion de Arroz', 4000,);
+(38,8,'En agua', '$7.500'),
+(39,8,'En leche', '$8.500'),
+(40,8,'Salpicon', '$6.000'),
+(41,9,'Lulo', '$9.000'),
+(42,9,'Frutos rojos', '$9.500'),
+(43,9,'Maracuyá y Naranja', '$9.500'),
+(44,9,'Liches y fresa', '$10.000'),
+(45,10,'Tinto', '$2.000'),
+(46,10,'Aromática', '$2.000'),
+(47,10,'Té', '$2.500'),
+(48,11,'Panela (personal)', '$3.000'),
+(49,11,'Panela (½ jarra)', '$5.000'),
+(50,11,'Panela (jarra)', '$8.000'),
+(51,11,'Cítrica', '$6.500'),
+(52,11,'Mango', '$8.500'),
+(53,11,'Hierbabuena', '$8.500'),
+(54,11,'Cerezada', '$9.500'),
+(55,11,'Coco', '$9.500'),
+(56,11,'Liches', '$9.500'),
+(57,12,'Clásica', '$6.000'),
+(58,12,'Mango', '$8.500'),
+(59,12,'Maracuyá', '$9.000'),
+(60,13,'Vainilla', '$8.500'),
+(61,13,'Chocolate', '$8.500'),
+(62,13,'Fresa', '$8.500'),
+(63,13,'Frappé de café', '$9.500'),
+(64,14,'Gaseosa personal', '$4.000'),
+(65,14,'Jugo Hit', '$4.000'),
+(66,14,'Cola y pola', '$4.000'),
+(67,14,'Botella con agua', '$4.000'),
+(68,14,'Gaseosa 1.5', '$8.000'),
+(69,14,'Cerveza tradicional', '$3.500'),
+(70,14,'Águila light', '$4.500'),
+(71,14,'Club Colombia', '$5.000'),
+(72,14,'Cerveza importada', '$9.500'),
+(73,15,'Cerveza y colombiana (jarra)', '$20.000'),
+(74,15,'Panache', '$10.000'),
+(75,15,'El dorado', '$10.000'),
+(76,15,'Caperucita roja', '$10.000'),
+(77,15,'En los años 1600', '$10.000'); 
 
 
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
+CREATE TABLE `categoria` (
+`id` int NOT NULL AUTO_INCREMENT,
+`nombre` VARCHAR(255)
+)
+
+INSERT INTO prueba_morichal.categoria VALUES
+(1,'Entrada'),
+(2,'Criollos'),
+(3,'Parrilla'),
+(4,'Llanera'),
+(5,'Asados al Barril'),
+(6,'Asados bajo Tierra'),
+(7,'Adicionales');
+(8,'Jugos Naturales'),
+(9,'Sodificadas'),
+(10,'Calientes'),
+(11,'Limonadas'),
+(12,'Micheladas'),
+(13,'Malteadas'),
+(14,'Otras Bebidas');
+(15,'Refajos'),
 --
 -- Table structure for table `ordenes`
 --
